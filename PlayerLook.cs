@@ -15,14 +15,12 @@ public class PlayerLook : MonoBehaviour
         float mouseX = input.x;
         float mouseY = input.y;
         
-        // Calculate camera rotation for looking up and down
-        xRotation -= mouseY * ySensitivity * Time.deltaTime;
-        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
-        
-        // Apply to Camera Transforms
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        
-        // Rotate left and right
-        transform.Rotate(Vector3.up, mouseX * xSensitivity * Time.deltaTime);
+        //calculates camera rotation for looking up and down
+        xRotation -= (mouseY * Time.deltaTime) * ySensitivity;
+        xRotation = Mathf.Clamp(xRotation, -80, 80f);
+        //Applt to Camera Transforms
+        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        //rotatate left and right
+        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) *  xSensitivity);
     }
 }
