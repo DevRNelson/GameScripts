@@ -8,17 +8,20 @@ public class InputManager : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerInput.OnFootActions onFoot;
 
+    private PlayerMotor motor;
     // Start is called before the first frame update
     void Awake()
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
+        morot = GetComponent<PlayerMotor>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        // Add your update logic here
+        //Tell playermotor to move using movement action
+        motor.ProcessMove(onFoot.movement.ReadValue<Vector2>());
     }
 
     private void OnEnable()
